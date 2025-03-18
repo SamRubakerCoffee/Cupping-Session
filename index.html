@@ -40,9 +40,12 @@
     <h2>Enter Your Scores</h2>
     <form id="scoreForm">
         <input type="text" id="name" placeholder="Your Name" required>
-        <input type="number" id="score1" placeholder="Score 1" required>
-        <input type="number" id="score2" placeholder="Score 2" required>
-        <input type="number" id="score3" placeholder="Score 3" required>
+        <input type="number" id="sample" placeholder="Sample #" required>
+        <input type="number" id="fragrance" placeholder="Score 1-10" required>
+        <input type="number" id="flavor" placeholder="Score 1-10" required>
+        <input type="number" id="body" placeholder="Score 1-10" required>
+        <input type="number" id="aftertaste" placeholder="Score 1-10" required>
+        <input type="number" id="balance" placeholder="Score -10-+5" required>
         <button type="submit">Submit</button>
     </form>
     <p id="response"></p>
@@ -52,15 +55,21 @@
             event.preventDefault();
             
             let name = document.getElementById("name").value;
-            let score1 = document.getElementById("score1").value;
-            let score2 = document.getElementById("score2").value;
-            let score3 = document.getElementById("score3").value;
+            let sample = document.getElementById("sample").value;
+            let fragrance = document.getElementById("fragrance").value;
+            let flavor = document.getElementById("flavor").value;
+            let body = document.getElementById("body").value;
+            let aftertaste = document.getElementById("aftertaste").value;
+            let balance = document.getElementById("balance").value;
 
             let data = {
                 name: name,
-                score1: score1,
-                score2: score2,
-                score3: score3
+                sample: sample,
+                fragrance: fragrance,
+                flavor: flavor,
+                body: body,
+                aftertaste: aftertaste,
+                balance: balance
             };
 
             fetch("https://script.google.com/macros/s/AKfycbzuFH1ngUFBeAo4DbRdbOFcx6EAVvIq3MGWXJ9QYTWzASR2autnU9Dt5f9k4yPT-QF2dA/exec", {
