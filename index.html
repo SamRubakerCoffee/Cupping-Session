@@ -1,6 +1,55 @@
 <!DOCTYPE html>
+<html>
+<head>
+    <title>Score Submission</title>
+</head>
+<body>
+    <h2>Enter Your Score</h2>
+    <label>Name:</label> <input type="text" id="name"><br>
+    <label>Score:</label> <input type="number" id="score"><br>
+    <button onclick="submitScore()">Save</button>
+    <p id="response"></p>
+
+    <script>
+        function submitScore() {
+            let name = document.getElementById("name").value;
+            let score = document.getElementById("score").value;
+
+            if (!name || !score) {
+                alert("Please enter both name and score.");
+                return;
+            }
+
+            let data = { name: name, score: score };
+
+            fetch("https://script.google.com/macros/s/AKfycbxCkGtvM5hpj4RR7K0mDhvPQFr8lgcQTH5-6JMoviHcvxeY5h8OvmfxsIiUpoEGnY89Jg/exec", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("response").innerText = "Score saved!";
+            })
+            .catch(error => {
+                document.getElementById("response").innerText = "Error saving score.";
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+
+
+
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cupping Session</title>
