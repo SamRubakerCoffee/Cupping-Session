@@ -30,9 +30,28 @@
             padding: 10px;
             border: none;
             cursor: pointer;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #218838;
+        }
+        #plotContainer {
+            display: none;
+            margin-top: 20px;
+        }
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 60%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
         }
     </style>
 </head>
@@ -49,6 +68,22 @@
         <button type="submit">Submit</button>
     </form>
     <p id="response"></p>
+
+    <button id="plotButton">Plot</button>
+    <p id="plotResponse"></p>
+
+    <div id="plotContainer">
+        <h3>Average Scores Per Sample</h3>
+        <table id="plotTable">
+            <thead>
+                <tr>
+                    <th>Sample</th>
+                    <th>Average Score</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 
     <script>
         document.getElementById("scoreForm").addEventListener("submit", function(event) {
@@ -82,6 +117,34 @@
                 document.getElementById("scoreForm").reset();
             }).catch(error => {
                 document.getElementById("response").innerText = "Error submitting.";
+            });
+        });
+
+        document.getElementById("plotButton").addEventListener("click", function() {
+            let password = prompt("Enter password:");
+            if (password !== "goresults") {
+                document.getElementById("plotResponse").innerText = "You're not Sam ya silly goose";
+                return;
+            }
+
+            document.getElementById("plotResponse").innerText = "";
+
+            fetch("https://script.google.com/macros/s/AKfycbxGVBxSF8BB3FtpOJ2r-80mHJdDFHUv7PTq4YMZ9wLpNKgbdd7GgnHnkJa3LuAiJBtxeA/exec?getAverages=true")
+            .then(response => response.json())
+            .then(data => {
+                let tableBody = document.getElementById("plotTable").getElementsByTagName("tbody")[0];
+                tableBody.innerHTML = "";  // Clear previous results
+
+                data.forEach(entry => {
+                    let row = tableBody.insertRow();
+                    row.insertCell(0).innerText = entry.sample;
+                    row.insertCell(1).innerText = entry.average;
+                });
+
+                document.getElementById("plotContainer").style.display = "block";
+            })
+            .catch(error => {
+                document.getElementById("plotResponse").innerText = "Error fetching data.";
             });
         });
     </script>
