@@ -107,7 +107,7 @@
                 balance: balance
             };
 
-            fetch("https://script.google.com/macros/s/AKfycbxHk0912qalfMkbPN0SaA2c9AxLVIcMu4J14gCmU6Ce9_dUaxB2BwM3M5-A7MkbR4hmKw/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbygd_RCGRcMGvjy6jP4sHl_2P1ABCr2GyfBAuK_jIiVo7U4kuQxtsqMQJSjL7yjlO2kqw/exec", {
                 method: "POST",
                 mode: "no-cors",
                 headers: { "Content-Type": "application/json" },
@@ -129,7 +129,7 @@
 
             document.getElementById("plotResponse").innerText = "";
 
-            fetch("https://script.google.com/macros/s/AKfycbxGVBxSF8BB3FtpOJ2r-80mHJdDFHUv7PTq4YMZ9wLpNKgbdd7GgnHnkJa3LuAiJBtxeA/exec?getAverages=true")
+            fetch("https://script.google.com/macros/s/AKfycbygd_RCGRcMGvjy6jP4sHl_2P1ABCr2GyfBAuK_jIiVo7U4kuQxtsqMQJSjL7yjlO2kqw/exec?getAverages=true")
             .then(response => response.json())
             .then(data => {
                 let tableBody = document.getElementById("plotTable").getElementsByTagName("tbody")[0];
