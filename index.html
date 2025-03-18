@@ -4,28 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Score Submission</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            display: block;
+            width: 90%;
+            margin: 10px auto;
+            padding: 10px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Enter Your Scores</h2>
-        <label for="name">Name:</label>
-        <input type="text" id="name" placeholder="Your Name"><br>
+    <h2>Enter Your Scores</h2>
+    <form id="scoreForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="number" id="score1" placeholder="Score 1" required>
+        <input type="number" id="score2" placeholder="Score 2" required>
+        <input type="number" id="score3" placeholder="Score 3" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="response"></p>
 
-        <label>Scores:</label>
-        <div class="scores">
-            <input type="number" id="score1" placeholder="Score 1">
-            <input type="number" id="score2" placeholder="Score 2">
-            <input type="number" id="score3" placeholder="Score 3">
-            <input type="number" id="score4" placeholder="Score 4">
-            <input type="number" id="score5" placeholder="Score 5">
-            <input type="number" id="score6" placeholder="Score 6">
-        </div>
+    <script>
+        document.getElementById("scoreForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById("name").value;
+            let score1 = document.getElementById("score1").value;
+            let score2 = document.getElementById("score2").value;
+            let score3 = document.getElementById("score3").value;
 
-        <button onclick="submitScore()">Save</button>
-        <p id="response"></p>
-    </div>
+            let data = {
+                name: name,
+                score1: score1,
+                score2: score2,
+                score3: score3
+            };
 
-    <script src="script.js"></script>
+            fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            }).then(() => {
+                document.getElementById("response").innerText = "Submitted successfully!";
+                document.getElementById("scoreForm").reset();
+            }).catch(error => {
+                document.getElementById("response").innerText = "Error submitting.";
+            });
+        });
+    </script>
 </body>
 </html>
