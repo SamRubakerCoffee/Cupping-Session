@@ -1,59 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>    
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cupping Session</title>
+    <title>Score Submission</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Cupping Session</h1>
-    </header>
-    <main>
-        <div id="users">
-            <p>Choose your Fighter!</p>
-            <button class="user-button" data-user="Matt">Matt</button>
-            <button class="user-button" data-user="Grace">Grace</button>
-            <button class="user-button" data-user="Alex">Alex</button>
-            <button class="user-button" data-user="Sam">Sam</button>
-            <button class="user-button" data-user="Colin">Colin</button>
-            <button class="user-button" data-user="Hanna">Hanna</button>
-        </div>
-        <div id="samples"style="display: none; justify-content: center; gap: 1rem;">
-            <div class="sample-container">
-                <button class="sample-button" data-sample="1">Sample 1</button>
-                <p id="score-1" class="score-display">Total: N/A</p>
-            </div>
-            <div class="sample-container">
-                <button class="sample-button" data-sample="2">Sample 2</button>
-                <p id="score-2" class="score-display">Total: N/A</p>
-            </div>
-            <div class="sample-container">
-                <button class="sample-button" data-sample="3">Sample 3</button>
-                <p id="score-3" class="score-display">Total: N/A</p>
-            </div>
-            <div class="sample-container">
-                <button class="sample-button" data-sample="4">Sample 4</button>
-                <p id="score-4" class="score-display">Total: N/A</p>
-            </div>
-            <div class="sample-container">
-                <button class="sample-button" data-sample="5">Sample 5</button>
-                <p id="score-5" class="score-display">Total: N/A</p>
-            </div>
-            <div class="sample-container">
-                <button class="sample-button" data-sample="6">Sample 6</button>
-                <p id="score-6" class="score-display">Total: N/A</p>
-            </div>
-        </div>
-        
-        <div id="tableContainer" style="display: none;"></div>
+    <div class="container">
+        <h2>Enter Your Scores</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Your Name"><br>
 
-        <p id="averageResult"></p>
-    </main>
-    <footer>
-        <p>&copy; 2025 Cupping Session App</p>
-    </footer>
+        <label>Scores:</label>
+        <div class="scores">
+            <input type="number" id="score1" placeholder="Score 1">
+            <input type="number" id="score2" placeholder="Score 2">
+            <input type="number" id="score3" placeholder="Score 3">
+            <input type="number" id="score4" placeholder="Score 4">
+            <input type="number" id="score5" placeholder="Score 5">
+            <input type="number" id="score6" placeholder="Score 6">
+        </div>
+
+        <button onclick="submitScore()">Save</button>
+        <p id="response"></p>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
