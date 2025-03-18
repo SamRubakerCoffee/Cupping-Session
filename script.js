@@ -16,7 +16,7 @@ function submitScore() {
 
     let data = { name: name, scores: scores };
 
-    fetch("https://script.google.com/macros/s/AKfycbzR2C7x3ZF_deOpQPkB59OaR37I8fPvRpmD5vsxr3p34FVsWdvUoHyhrzw4z402artoAg/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbw8N0ymey1uLiEEMj5Afj-ArUgMJLgIiIyD1JmVgj6iIGkVyP9kYHr69DR_R86qTOe5Zg/exec", {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" }
